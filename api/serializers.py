@@ -8,7 +8,7 @@ __author__ = 'jesuejunior'
 class PlugSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plug
-        fields = ('id', 'room', 'appliance')
+        fields = ('id', 'room', 'appliance', 'connected')
 
 
 class ResidenceSerializer(serializers.ModelSerializer):
