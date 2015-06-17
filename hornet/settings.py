@@ -199,3 +199,8 @@ LOGGING = {
             },
         },
     }
+
+try:
+    from .settings_local import *
+except ImportError:
+    print u'O arquivo .settings_local.py nao foi encontrado.'
