@@ -14,7 +14,7 @@ class PlugSerializer(serializers.ModelSerializer):
 class ResidenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Residence
-        fields = ('id', 'cep', 'cpf')
+        fields = ('id', 'cep', 'address', )
 
 
 class UsageSerializer(serializers.ModelSerializer):
