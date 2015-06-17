@@ -24,7 +24,7 @@ class Plug(models.Model):
     name = models.CharField(max_length=55)
     room = models.TextField()
     appliance = models.ForeignKey(Appliance, null=True, blank=True)
-    connected = models.BooleanField(default=True)
+    connected = models.BooleanField(default=False)
 
     class Meta:
         app_label = 'api'
