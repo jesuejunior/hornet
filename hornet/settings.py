@@ -100,7 +100,7 @@ CACHES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-BR'
 
 LANGUAGES = (
     ('pt-br', 'Brazilian Portuguese'),
