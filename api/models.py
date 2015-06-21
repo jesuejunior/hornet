@@ -25,6 +25,7 @@ class Plug(models.Model):
     room = models.TextField()
     appliance = models.ForeignKey(Appliance, null=True, blank=True)
     connected = models.BooleanField(default=False)
+    priority = models.IntegerField(default=0)
 
     class Meta:
         app_label = 'api'
@@ -34,7 +35,10 @@ class Plug(models.Model):
 class Usage(models.Model):
     plug = models.ForeignKey(Plug)
     registered = models.DateTimeField(auto_now_add=True)
-    value = models.FloatField()
+    total_usage = models.FloatField()
+    kilowatt_hour = models.FloatField()
+    power = models.FloatField()
+    voltage = models.FloatField()
 
     class Meta:
         app_label = 'api'
