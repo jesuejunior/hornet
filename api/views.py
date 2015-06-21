@@ -25,7 +25,6 @@ class ResidenceList(ResidenceBaseView, generics.ListAPIView):
     """
 
 
-
 class ResidenceDetail(ResidenceBaseView, generics.RetrieveAPIView):
 
     """
@@ -85,7 +84,7 @@ class ApplianceDelete(ApplianceBaseView, generics.DestroyAPIView):
         Delete appliance selected.
     """
 
-#Plug
+# Plug
 
 
 class PlugBaseView(generics.GenericAPIView):
@@ -119,6 +118,25 @@ class PlugEdit(PlugBaseView, generics.RetrieveUpdateAPIView):
     u"""
         Edit plug registered
     """
+    def connect_plug(self):
+        pass
+
+    def disconnect_plug(self):
+        pass
+
+    def manager_plug(self, request):
+        if request.data.get('connected'):
+            self.connect_plug()
+        else:
+            self.disconnect_plug()
+
+    def put(self, request, *args, **kwargs):
+        self.manager_plug(request)
+        return super(PlugEdit, self).put(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        self.manager_plug(request)
+        return super(PlugEdit, self).patch(request, *args, **kwargs)
 
 
 class PlugDelete(PlugBaseView, generics.DestroyAPIView):
@@ -126,7 +144,8 @@ class PlugDelete(PlugBaseView, generics.DestroyAPIView):
         Delete plug selected.
     """
 
-#Usage
+# Usage
+
 
 class UsageBaseView(generics.GenericAPIView):
     model = Usage
