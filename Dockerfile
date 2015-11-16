@@ -1,18 +1,15 @@
 FROM python:2.7.9
 
+COPY . /hornet
+WORKDIR /hornet
+ADD dockerfiles/settings_local.py hornet/settings_local.py
+
 RUN apt-get -y update \
 	&& apt-get -y install python-pip supervisor nginx \
 	&& apt-get autoremove -y \
 	&& apt-get clean \
-	&& rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default /etc/nginx/nginx.conf
-
-COPY . /hornet
-
-WORKDIR /hornet
-
-ADD dockerfiles/settings_local.py hornet/settings_local.py
-
-RUN pip install -r requirements.pip \
+	&& rm /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default /etc/nginx/nginx.conf && \
+	pip install -r requirements.pip \
 	&& python manage.py migrate \
 	&& python manage.py collectstatic --noinput
 
